@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ] // Usually aliases point to 'src', not the root
     }
   }
 }
