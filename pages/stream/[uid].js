@@ -20,23 +20,19 @@ const Stream = () => {
     //     },
     //     body: JSON.stringify({ message, id }),
     //   });
+  }, [router.query]);
 
+  useEffect(() => {
     //   // Open connection to our JavaScript Next.js API route
-      const eventSource = new EventSource("/api/ws");
+    const eventSource = new EventSource("/api/ws");
 
     //   // Capture generic incoming server-sent messages
-      eventSource.onmessage = (event) => {
-        console.log("Received SSE message:", event);
-        if(event.lastEventId != id) {
-          vid.current.src = JSON.parse(event.data).frameData;
-        }
-      };
-
-    //   // Handle connection drops or errors
-    //   eventSource.onerror = (error) => {
-    //     console.error("SSE Connection error:", error);
-    //     eventSource.close();
-    //   };
+    eventSource.onmessage = (event) => {
+      console.log("Received SSE message:", id);
+      if (!!id && event.lastEventId != id) {
+        vid.current.src = JSON.parse(event.data).frameData;
+      }
+    };
 
     (async () => {
       let st = await navigator.mediaDevices.getUserMedia({
@@ -58,7 +54,7 @@ const Stream = () => {
 
           // Convert canvas to compressed base64 JPEG format
           const frameData = canvas.toDataURL("image/jpeg", 0.5); // 0.5 is compression quality
-          
+
           fetch("/api/send", {
             method: "POST",
             headers: {
@@ -74,7 +70,7 @@ const Stream = () => {
     // return () => {
     //   eventSource.close();
     // };
-  }, [router.query]);
+  }, [id]);
 
   return (
     <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
@@ -93,7 +89,7 @@ const Stream = () => {
         Broadcast
       </button>*/}
       <video
-      style={{
+        style={{
           marginTop: "20px",
           width: "400px",
           borderRadius: "8px",

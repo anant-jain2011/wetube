@@ -20,7 +20,7 @@ export default function handler(req, res) {
 
     // 3. Loop through all active SSE streams and push the new data out
     global.clients.forEach((clientStream) => {
-        console.log(frameData.length, 22);
+        console.log(id, 22);
         clientStream.write(`id: ${id}\n`);
         clientStream.write(`data: ${JSON.stringify({ frameData })}\n\n`);
     });
