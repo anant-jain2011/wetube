@@ -27,7 +27,9 @@ const Stream = () => {
     //   // Capture generic incoming server-sent messages
       eventSource.onmessage = (event) => {
         console.log("Received SSE message:", event);
-        vid.current.src = JSON.parse(event.data).frameData;
+        if(event.lastEventId != id) {
+          vid.current.src = JSON.parse(event.data).frameData;
+        }
       };
 
     //   // Handle connection drops or errors
