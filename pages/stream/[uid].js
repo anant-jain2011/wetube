@@ -58,9 +58,6 @@ const Stream = () => {
 
           // Convert canvas to compressed base64 JPEG format
           const frameData = canvas.toDataURL("image/jpeg", 0.5); // 0.5 is compression quality
-
-          // Send the frame string to the Express server
-          console.log(frameData, 11);
           
           fetch("/api/send", {
             method: "POST",
