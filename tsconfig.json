@@ -28,7 +28,7 @@
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "pages/api/ws.js"  ],
   "exclude": [
     "node_modules"
   ]
