@@ -82,7 +82,7 @@ const Stream = () => {
   return (
     <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
       <h1>SSE Real-Time Dashboard (JS)</h1>
-      <input
+      {/*<input
         type="text"
         placeholder="Type a message to broadcast"
         id="messageInput"
@@ -94,14 +94,14 @@ const Stream = () => {
         style={{ marginLeft: "8px" }}
       >
         Broadcast
-      </button>
+      </button>*/}
       <video
       style={{
           marginTop: "20px",
           width: "400px",
           borderRadius: "8px",
           transform: "rotateY(180deg)",
-          display: "none"
+          // display: "none"
         }}
         autoPlay
         muted
